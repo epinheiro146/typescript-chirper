@@ -1,0 +1,1 @@
+The purpose of this is to convert the server side of my previous Express API lab to TypeScript!
