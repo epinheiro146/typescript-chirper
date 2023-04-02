@@ -21,7 +21,7 @@ let getChirps = () => {
     return new Promise<Chirp[]>(resolve => {
         const chirpstore = Object.assign({}, chirps);
         const transformed = Object.keys(chirpstore).map(key => {
-            const chirp = { ...chirpstore[key], id: key };
+            const chirp = { ...chirpstore[Number(key)], id: Number(key) };
             return chirp;
         });
         transformed.pop();
