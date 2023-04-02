@@ -6,17 +6,22 @@ interface Metadata {
     results: string;
 }
 
-let chirps = { nextid: 0 };
+interface ChirpstoreStructure {
+    [id: number]: Chirp;
+    nextid: number;
+}
+
+let chirps: ChirpstoreStructure = { nextid: 0 };
 
 if (fs.existsSync('chirps.json')) {
     chirps = JSON.parse(fs.readFileSync('chirps.json').toString());
 }
 
 let getChirps = () => {
-    return new Promise<Chirp[]>((resolve) => {
+    return new Promise<Chirp[]>(resolve => {
         const chirpstore = Object.assign({}, chirps);
         const transformed = Object.keys(chirpstore).map(key => {
-            const chirp = { ...chirpstore[key], id: key }
+            const chirp = { ...chirpstore[key], id: key };
             return chirp;
         });
         transformed.pop();
